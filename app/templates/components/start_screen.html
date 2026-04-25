@@ -1,25 +1,50 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+    <div class="flex flex-col items-center justify-center min-h-full p-0 relative" style="overflow-x:hidden;">
+        <!-- Hero Section -->
+        <div class="w-full flex flex-col items-center justify-center py-12 px-4 fade-in" style="position:relative;z-index:1;">
+            <div class="mb-4 animate-bounce" style="font-size:4.5rem;filter:drop-shadow(0 4px 24px var(--accent));">🎲</div>
+            <h1 class="text-5xl font-bold mb-2" style="color:var(--accent);font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;">Soc Ops</h1>
+            <p class="text-lg mb-6" style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;max-width:28rem;margin-left:auto;margin-right:auto;">
+                The playful social bingo game for breaking the ice and making new connections.
+            </p>
+            <button
+                hx-post="/start"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="btn-unique text-lg fade-in"
+                style="min-width:220px;animation: pulse 1.5s infinite alternate;margin-bottom:2.5rem;">
+                Get Started
+            </button>
+            <!-- Animated scroll cue -->
+            <div class="flex flex-col items-center mt-2" aria-hidden="true">
+                <span style="font-size:2rem;color:var(--accent);animation:scrollDown 1.2s infinite alternate;">↓</span>
+                <span class="text-xs" style="color:var(--text-muted);">How to play</span>
+            </div>
+        </div>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
+        <!-- Floating How to Play Card -->
+        <div class="card-unique fade-in" style="position:relative;z-index:2;max-width:22rem;margin-top:-2.5rem;box-shadow:0 8px 32px 0 var(--accent-dark, #b26c00);animation-delay:0.3s;">
+            <h2 class="font-semibold mb-3" style="color:var(--accent);font-size:1.3rem;">How to play</h2>
+            <ul class="text-left text-sm space-y-2" style="color:var(--text-muted);">
                 <li>• Find people who match the questions</li>
                 <li>• Tap a square when you find a match</li>
                 <li>• Get 5 in a row to win!</li>
             </ul>
         </div>
 
-        <button
-            hx-post="/start"
-            hx-target="#game-container"
-            hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors">
-            Start Game
-        </button>
+        <!-- Decorative Accent Shapes -->
+        <div style="position:absolute;top:-60px;left:-60px;width:180px;height:180px;background:radial-gradient(circle at 40% 60%,var(--accent) 0%,transparent 80%);opacity:0.18;z-index:0;"></div>
+        <div style="position:absolute;bottom:-80px;right:-80px;width:220px;height:220px;background:radial-gradient(circle at 60% 40%,#2563eb 0%,transparent 80%);opacity:0.13;z-index:0;"></div>
     </div>
 </div>
-</div>
+
+<style>
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--accent, #ffb300); }
+    100% { box-shadow: 0 0 0 16px rgba(255,179,0,0.08); }
+}
+@keyframes scrollDown {
+    0% { transform: translateY(0); opacity: 0.7; }
+    100% { transform: translateY(12px); opacity: 1; }
+}
+</style>

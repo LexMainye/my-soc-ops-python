@@ -1,27 +1,49 @@
 <div class="grid grid-cols-5 gap-1 w-full max-w-md mx-auto aspect-square">
     {% for square in session.board %}
-    {% set is_winning = square.id in session.winning_square_ids %}
-    <button
-        {% if not square.is_free_space %}
-        hx-post="/toggle/{{ square.id }}"
-        hx-target="#game-container"
-        hx-swap="outerHTML"
-        {% endif %}
-        {% if square.is_free_space %}disabled{% endif %}
-        class="relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight
-        {%- if square.is_marked %}
-            {%- if is_winning %} bg-amber-200 border-amber-400 text-amber-900
-            {%- else %} bg-marked border-marked-border text-green-800
-            {%- endif %}
-        {%- else %} bg-white text-gray-700 active:bg-gray-100
-        {%- endif %}
-        {%- if square.is_free_space %} font-bold text-sm{% endif %}"
-        aria-pressed="{{ 'true' if square.is_marked else 'false' }}"
-        aria-label="{{ 'Free space' if square.is_free_space else square.text }}">
-        <span class="wrap-break-word hyphens-auto">{{ square.text }}</span>
-        {% if square.is_marked and not square.is_free_space %}
-        <span class="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
-        {% endif %}
-    </button>
+        {% set is_winning = square.id in session.winning_square_ids %}
+        <button
+            {% if not square.is_free_space %}
+                hx-post="/toggle/{{ square.id }}"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+            {% endif %}
+            {% if square.is_free_space %}disabled{% endif %}
+            class="relative flex items-center justify-center text-center select-none min-h-[60px] text-xs leading-tight font-bold fade-in"
+            style="
+                border-radius:1.1rem;
+                border:2px solid var(--accent);
+                font-family:'JetBrains Mono',monospace;
+                background:
+                    {% if square.is_marked %}
+                        {% if is_winning %}linear-gradient(120deg, var(--accent), #fffbe6)
+                        {% else %}var(--success)
+                        {% endif %}
+                    {% else %}var(--bg-alt)
+                    {% endif %};
+                color:
+                    {% if square.is_marked %}
+                        {% if is_winning %}#b26c00
+                        {% else %}#fff
+                        {% endif %}
+                    {% else %}var(--text-main)
+                    {% endif %};
+                box-shadow:
+                    {% if is_winning %}0 0 0 3px var(--accent-dark),0 4px 24px 0 var(--accent-dark)
+                    {% elif square.is_marked %}0 2px 12px 0 rgba(34,197,94,0.18)
+                    {% else %}0 1px 4px 0 rgba(31,41,55,0.10)
+                    {% endif %};
+                transition:all 0.18s cubic-bezier(.4,0,.2,1);
+                padding:0.7rem 0.2rem;
+                margin:0.1rem;
+                min-width:0;
+            "
+            aria-pressed="{{ 'true' if square.is_marked else 'false' }}"
+            aria-label="{{ 'Free space' if square.is_free_space else square.text }}"
+        >
+            <span class="wrap-break-word hyphens-auto">{{ square.text }}</span>
+            {% if square.is_marked and not square.is_free_space %}
+                <span class="absolute top-1 right-1 text-lg" style="color:var(--accent);">✓</span>
+            {% endif %}
+        </button>
     {% endfor %}
 </div>

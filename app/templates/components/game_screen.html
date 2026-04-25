@@ -1,37 +1,38 @@
 <div id="game-container">
-<div class="flex flex-col min-h-full bg-gray-50">
-    <!-- Header -->
-    <header class="flex items-center justify-between p-3 bg-white border-b border-gray-200">
-        <button
-            hx-post="/reset"
-            hx-target="#game-container"
-            hx-swap="outerHTML"
-            class="text-gray-500 text-sm px-3 py-1.5 rounded active:bg-gray-100">
-            ← Back
-        </button>
-        <h1 class="font-bold text-gray-900">Soc Ops</h1>
-        <div class="w-16"></div>
-    </header>
+    <div class="flex flex-col min-h-full">
+        <!-- Header -->
+        <header class="flex items-center justify-between p-3 card-unique mb-4" style="background:var(--bg-alt);border:none;box-shadow:0 2px 12px 0 rgba(255,179,0,0.08);">
+            <button
+                hx-post="/reset"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="btn-unique text-sm px-4 py-1.5"
+                style="min-width:4rem;">
+                ← Back
+            </button>
+            <h1 class="font-bold" style="color:var(--accent);font-family:'JetBrains Mono',monospace;">Soc Ops</h1>
+            <div class="w-16"></div>
+        </header>
 
-    <!-- Instructions -->
-    <p class="text-center text-gray-500 text-sm py-2 px-4">
-        Tap a square when you find someone who matches it.
-    </p>
+        <!-- Instructions -->
+        <p class="text-center text-lg mb-2 fade-in" style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;">
+            Tap a square when you find someone who matches it.
+        </p>
 
-    <!-- Bingo indicator -->
-    {% if session.has_bingo %}
-    <div class="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm">
-        🎉 BINGO! You got a line!
+        <!-- Bingo indicator -->
+        {% if session.has_bingo %}
+        <div class="card-unique text-center py-2 font-semibold text-lg fade-in" style="color:var(--accent);background:rgba(255,179,0,0.12);animation-delay:0.2s;">
+            🎉 BINGO! You got a line!
+        </div>
+        {% endif %}
+
+        <!-- Board -->
+        <div class="flex-1 flex items-center justify-center p-3 fade-in" style="animation-delay:0.1s;">
+            {% include "components/bingo_board.html" %}
+        </div>
     </div>
+
+    {% if session.show_bingo_modal %}
+        {% include "components/bingo_modal.html" %}
     {% endif %}
-
-    <!-- Board -->
-    <div class="flex-1 flex items-center justify-center p-3">
-        {% include "components/bingo_board.html" %}
-    </div>
-</div>
-
-{% if session.show_bingo_modal %}
-    {% include "components/bingo_modal.html" %}
-{% endif %}
 </div>

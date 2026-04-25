@@ -5,9 +5,83 @@ body,
     margin: 0;
 }
 
+
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'JetBrains Mono', 'Fira Mono', 'Menlo', monospace;
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+    color: var(--text-main, #f1f5f9);
     -webkit-tap-highlight-color: transparent;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* Custom CSS Variables for theme */
+:root {
+    --accent: #ffb300;
+    --accent-dark: #b26c00;
+    --bg-main: #0f172a;
+    --bg-alt: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --danger: #ff5252;
+    --success: #22c55e;
+}
+
+/* Animated background utility */
+.bg-animated {
+    background: linear-gradient(120deg, #0f172a 0%, #2563eb 50%, #ffb300 100%);
+    background-size: 200% 200%;
+    animation: bg-move 8s ease-in-out infinite alternate;
+}
+@keyframes bg-move {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Accent border and shadow */
+.border-accent { border-color: var(--accent); }
+.shadow-accent { box-shadow: 0 4px 24px 0 var(--accent-dark, #b26c00); }
+
+/* Button creative style */
+.btn-unique {
+    background: var(--accent);
+    color: #22223b;
+    border-radius: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 12px 0 rgba(255,179,0,0.15);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    padding: 1rem 2.5rem;
+    border: none;
+    cursor: pointer;
+}
+.btn-unique:hover, .btn-unique:focus {
+    background: var(--accent-dark);
+    color: #fff;
+    box-shadow: 0 4px 24px 0 rgba(178,108,0,0.25);
+    transform: translateY(-2px) scale(1.03);
+}
+
+/* Card creative style */
+.card-unique {
+    background: var(--bg-alt);
+    border-radius: 1.25rem;
+    box-shadow: 0 2px 16px 0 rgba(31,41,55,0.18);
+    border: 2px solid var(--accent);
+    padding: 2rem 1.5rem;
+    color: var(--text-main);
+}
+
+/* Animated fade-in utility */
+.fade-in {
+    animation: fadeIn 1.2s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(24px) scale(0.98); }
+    100% { opacity: 1; transform: none; }
 }
 
 /* Tailwind-like utility classes */

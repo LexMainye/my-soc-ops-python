@@ -40,7 +40,19 @@ uv run pytest                                       # Run tests
 uv run ruff check .                                 # Lint
 ```
 
-## Styling
+
+## Design Guide
+
+**Soc Ops** uses a unique, creative frontend design system. Follow these principles for all UI work:
+
+- **Typography:** Use distinctive, beautiful fonts (e.g., JetBrains Mono). Avoid generic fonts like Arial, Inter, or system-ui.
+- **Color & Theme:** Commit to a bold, cohesive palette. Use CSS variables for consistency. Prefer dominant backgrounds with sharp accent colors. Draw inspiration from IDE themes or cultural aesthetics.
+- **Motion:** Use CSS animations for page loads and micro-interactions. Favor high-impact, orchestrated effects (e.g., staggered fade-ins) over scattered, generic transitions.
+- **Backgrounds:** Create depth and atmosphere with gradients, patterns, or layered effects. Avoid plain solid backgrounds.
+- **Avoid "AI slop":** Never use overused fonts, clichéd color schemes (like purple gradients on white), or cookie-cutter layouts. Every component should feel designed for this context.
+- **Implementation:** Match code complexity to the design vision. Maximalist looks need elaborate CSS and animation; minimalist looks require precision and restraint.
+
+**Styling**
 
 Uses custom CSS utility classes (Tailwind-like) in `app/static/css/app.css`:
 - Layout: `.flex`, `.grid`, `.items-center`
