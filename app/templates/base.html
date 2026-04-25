@@ -1,17 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#2563eb">
-    <meta name="description" content="Tech Life Bingo - Find developers who match the questions!">
-    <title>Tech Life Bingo</title>
-    <link rel="stylesheet" href="/static/css/app.css">
-    <link rel="icon" type="image/png" href="/static/favicon.png">
-    <script src="/static/js/htmx.min.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#FF5C8D">
+        <meta name="description" content="Tech Life Bingo - Find developers who match the questions!">
+        <title>Tech Life Bingo</title>
+        <!-- Playful font: Fredoka One for headings, Nunito for body -->
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/app.css">
+        <link rel="icon" type="image/png" href="/static/favicon.png">
+        <script src="/static/js/htmx.min.js"></script>
+        <style>
+            html, body, #app { height: 100%; margin: 0; }
+            body {
+                font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+                background: linear-gradient(135deg, #FFB86B 0%, #FF5C8D 100%);
+                min-height: 100vh;
+                transition: background 0.5s;
+            }
+            .playful-title {
+                font-family: 'Fredoka One', cursive;
+                letter-spacing: 1px;
+                font-weight: 400;
+            }
+            /* Animated confetti background (subtle) */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0; left: 0; width: 100vw; height: 100vh;
+                pointer-events: none;
+                z-index: 0;
+                background: repeating-radial-gradient(circle at 20% 30%, #fff7 2px, transparent 4px 40px),
+                                        repeating-radial-gradient(circle at 80% 70%, #fff7 2px, transparent 4px 40px),
+                                        repeating-radial-gradient(circle at 50% 50%, #FFD6E0 2px, transparent 4px 60px);
+                opacity: 0.25;
+                animation: confetti-move 12s linear infinite alternate;
+            }
+            @keyframes confetti-move {
+                0% { background-position: 0 0, 0 0, 0 0; }
+                100% { background-position: 60px 120px, -80px -60px, 40px 80px; }
+            }
+        </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="position: relative; z-index: 1;">
         {% block content %}{% endblock %}
     </div>
 </body>
