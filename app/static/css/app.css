@@ -1,15 +1,32 @@
 html,
-body,
-#app {
-    height: 100%;
-    margin: 0;
+
+/* Playful theme variables */
+:root {
+    --color-primary: #FF5C8D;
+    --color-secondary: #FFB86B;
+    --color-accent: #6C63FF;
+    --color-bg: #FFF6F9;
+    --color-bg-dark: #2D2D34;
+    --color-success: #4EC9B0;
+    --color-warning: #FFD166;
+    --color-white: #fff;
+    --color-black: #222;
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
+    color: var(--color-black);
+    transition: background 0.5s;
 }
 
+.playful-title {
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
 /* Tailwind-like utility classes */
 .h-full { height: 100%; }
 .min-h-full { min-height: 100%; }

@@ -1,25 +1,67 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+        <div class="flex flex-col items-center justify-center min-h-full p-6" style="background: none;">
+            <div class="unique-bg absolute inset-0 w-full h-full -z-10"></div>
+            <div class="text-center max-w-md mx-auto" style="backdrop-filter: blur(2px);">
+                <h1 class="text-5xl mb-3 font-bold unique-title" style="letter-spacing: 0.04em; color: #232946; font-family: 'DM Serif Display', serif;">Tech Life Bingo</h1>
+                <p class="text-lg mb-8" style="color: #6C63FF; font-family: 'DM Sans', sans-serif;">A developer icebreaker, reimagined</p>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
-            </ul>
+                <div class="rounded-xl p-6 shadow-md border border-gray-200 mb-10 unique-card" style="background: rgba(255,255,255,0.85);">
+                    <h2 class="font-semibold mb-3" style="color: #232946; font-family: 'DM Serif Display', serif;">How it works</h2>
+                    <ul class="text-left text-gray-700 text-sm space-y-2" style="font-family: 'DM Sans', sans-serif;">
+                        <li><span class="unique-dot"></span> Connect with devs who match the prompts</li>
+                        <li><span class="unique-dot"></span> Mark a square for each match</li>
+                        <li><span class="unique-dot"></span> Complete a line to win</li>
+                    </ul>
+                </div>
+
+                <button
+                    hx-post="/start"
+                    hx-target="#game-container"
+                    hx-swap="outerHTML"
+                    class="w-full font-bold py-4 px-8 rounded-lg text-lg transition-all unique-cta"
+                    style="background: linear-gradient(90deg, #232946 60%, #6C63FF 100%); color: #fff; letter-spacing: 0.03em; box-shadow: 0 6px 32px #23294622; border: none;"
+                    onmouseover="this.style.background='linear-gradient(90deg, #6C63FF 0%, #232946 100%)'; this.style.letterSpacing='0.08em';"
+                    onmouseout="this.style.background='linear-gradient(90deg, #232946 60%, #6C63FF 100%)'; this.style.letterSpacing='0.03em';"
+                >
+                    Begin
+                </button>
+                <p class="mt-6 text-xs" style="color: #232946; opacity: 0.7; font-family: 'DM Sans', sans-serif;">No mascots. No clichés. Just a fresh take on social bingo for devs.</p>
+            </div>
         </div>
+</div>
 
-        <button
-            hx-post="/start"
-            hx-target="#game-container"
-            hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors">
-            Start Game
-        </button>
-    </div>
-</div>
-</div>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.unique-bg {
+    background: repeating-linear-gradient(135deg, #f4f4f8 0 40px, #e9e9f3 40px 80px),
+                            linear-gradient(120deg, #6C63FF11 0%, #23294608 100%);
+    opacity: 1;
+    z-index: -1;
+}
+.unique-title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #232946;
+}
+.unique-card {
+    box-shadow: 0 2px 24px #23294611;
+    border-radius: 1.25rem;
+}
+.unique-dot {
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    margin-right: 0.7em;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6C63FF 60%, #232946 100%);
+    vertical-align: middle;
+}
+.unique-cta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2em;
+    border-radius: 0.75em;
+    transition: background 0.3s, letter-spacing 0.2s;
+    box-shadow: 0 6px 32px #23294622;
+}
+</style>
